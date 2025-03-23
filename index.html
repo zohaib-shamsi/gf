@@ -5,39 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Love ❤️</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        
         body {
             text-align: center;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            font-family: 'Great Vibes', cursive;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
             overflow: hidden;
             position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
         }
         h1 {
             color: #fff;
             font-size: 3em;
             text-shadow: 0 0 20px #ff1493, 0 0 30px #ff69b4;
             animation: glow 1.5s infinite alternate;
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            white-space: nowrap;
+            margin-bottom: 20px;
         }
         @keyframes glow {
             0% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493; }
             100% { text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493; }
         }
-        .container {
-            position: relative;
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
         .buttons {
             display: flex;
             gap: 20px;
+            position: relative;
         }
         .btn {
             font-size: 22px;
@@ -47,7 +44,7 @@
             border-radius: 15px;
             transition: 0.3s;
             box-shadow: 0 0 20px white;
-            position: relative;
+            position: absolute;
         }
         .yes {
             background: linear-gradient(45deg, #ff66b2, #ff1493);
@@ -80,26 +77,9 @@
             0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 3em;
-            text-shadow: 0 0 10px #ff0000;
-            animation: float 3s infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(-30px); opacity: 0.8; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
         @media (max-width: 600px) {
-            .buttons {
-                flex-direction: row;
-                justify-content: center;
-                gap: 20px;
-            }
             .btn {
-                width: auto;
+                font-size: 18px;
                 padding: 10px 20px;
             }
         }
@@ -119,7 +99,7 @@
         const messages = [
             "You're the best thing that happened to me! 💖", 
             "I can't imagine my life without you! 🥰", 
-            "You're my forever love! 💍"
+            "I am angry! Follow me also! 😡"
         ];
         function confirmStep(event) {
             yesClicks++;
@@ -133,23 +113,14 @@
             }
         }
         function moveButton(btn) {
-            let x = Math.random() * (window.innerWidth - btn.clientWidth);
-            let y = Math.random() * (window.innerHeight - btn.clientHeight);
+            let maxX = window.innerWidth - btn.offsetWidth - 20;
+            let maxY = window.innerHeight - btn.offsetHeight - 20;
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+            btn.style.position = "absolute";
             btn.style.left = `${x}px`;
             btn.style.top = `${y}px`;
         }
-        function createHearts() {
-            for (let i = 0; i < 20; i++) {
-                let heart = document.createElement("div");
-                heart.classList.add("heart");
-                heart.innerHTML = "❤️";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.top = Math.random() * 100 + "vh";
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 3000);
-            }
-        }
-        setInterval(createHearts, 1500);
     </script>
 </body>
 </html>
